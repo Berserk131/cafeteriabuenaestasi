@@ -82,11 +82,12 @@ function limpiarHtml(elemento){
 }
 
 
-    function actualizarUI() {
+function actualizarUI() {
     let carrito = JSON.parse(localStorage.getItem('carrito'));
-    console.log("start")
+    console.log("start");
     let cartItemsContainer = document.getElementById('cart-items');
-    limpiarHtml(cartItemsContainer)
+    limpiarHtml(cartItemsContainer);
+    
     carrito.forEach(producto => {
         let itemDiv = document.createElement('div');
         itemDiv.classList.add('card', 'mb-3', 'cart-item');
@@ -94,7 +95,7 @@ function limpiarHtml(elemento){
         itemDiv.innerHTML = `
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="${producto.imagen}" alt="${producto.nombre}" class="img-fluid rounded-start">
+                    <img src="{% static '${producto.imagen}' %}" alt="${producto.nombre}" class="img-fluid rounded-start">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -109,6 +110,7 @@ function limpiarHtml(elemento){
         cartItemsContainer.appendChild(itemDiv);
     });
 }
+
 
 document.querySelectorAll('.btn-outline-dark').forEach(boton => {
     boton.addEventListener('click', function(event) {

@@ -303,32 +303,36 @@
                     .catch(error => console.error('Error al conectar con la API:', error));
             }
         
-            // Llamar a la función para obtener el valor del dólar cuando se carga la página
+            
             obtenerValorDolarYConvertir();
         
-            // Función para añadir un producto al carrito
+      
             function añadirAlCarrito(idProducto, nombreProducto, precioProducto, imagenProducto) {
-                // Obtener el carrito del almacenamiento local o crear uno nuevo si no existe
-                let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-                // Buscar si el producto ya está en el carrito
-                let productoExistente = carrito.find(p => p.id === idProducto);
-                // Si el producto ya está en el carrito, aumentar su cantidad
-                if (productoExistente) {
-                    productoExistente.cantidad++;
-                } else {
-                  
-                    let producto = {
-                        id: idProducto,
-                        nombre: nombreProducto,
-                        precio: precioProducto,
-                        imagen: imagenProducto
-                    };
-                    producto.cantidad = 1;
-                    carrito.push(producto);
-                }
-               
-                localStorage.setItem('carrito', JSON.stringify(carrito));
-            }
+ 
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+   
+    let productoExistente = carrito.find(p => p.id === idProducto);
+   
+    if (productoExistente) {
+        productoExistente.cantidad++;
+    } else {
+       
+        let rutaImagen = "{% static '" + imagenProducto + "' %}";
+
+        let producto = {
+            id: idProducto,
+            nombre: nombreProducto,
+            precio: precioProducto,
+            imagen: rutaImagen
+        };
+        producto.cantidad = 1;
+        carrito.push(producto);
+    }
+
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    actualizarUI(); 
+}
+
         </script>
         
         
