@@ -1,0 +1,336 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Bienvendio a la cafeteria</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="{% static 'style.css' %}" rel="stylesheet" />
+
+  
+
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#!">cafe</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="">Casa</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'cliente_formulario' %}">formulario comida</a></li>
+
+                        <li class="nav-item dropdown">
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><hr class="dropdown-divider" /></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <a href="{% url 'carrito' %}" class="btn btn-outline-dark">
+                            <i class="bi-cart-fill me-1"></i>
+                            carrito
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        </a>
+                    </form>
+                    
+                    <form class="d-flex">
+                        <a href="{% url 'login' %}" class="btn btn-outline-dark">
+                            <i class="bi bi-chat-left-heart"></i>
+                            Login
+                        </a>
+                    </form>
+                    
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                </div>
+                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <img src="{% static 'img/cafetera.jpg' %}" class="d-block w-100" alt="..." height="300" width="1000">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                            <img src="{% static 'img/donas.jpg' %}" class="d-block w-100" alt="..." height="300" width="1000">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'img/pastel.jpg' %}" class="d-block w-100" alt="..." height="300" width="1000">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            
+        </header>
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" src="{% static 'img/cafetera.jpg' %}" alt="Cafetera" />
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Cafetera</h5>
+                                    <span class="precio-producto">50000</span> CLP - <span class="precio-producto">60000</span> CLP
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <button class="btn btn-outline-dark mt-auto" data-id="1" onclick="añadirAlCarrito(1, 'Cafetera', 50000, '{% static ',img/cafetera.jpg,' %}')">Carrito</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                            <img class="card-img-top" src="{% static 'img/cajate.jpeg' %}" alt="..." />
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Te con descuento</h5>
+                                    <div class="d-flex justify-content-center small text-warning mb-2">
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                    </div>
+                                    <span class="precio-producto">30000</span> CLP - <span class="precio-producto">19000</span> CLP
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-outline-dark mt-auto" data-id="2" onclick="añadirAlCarrito(2, 'Té con descuento', 19000, '{% static ',img/cajate.jpeg,' %}')">Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Sale badge-->
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/donas.jpg' %}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">Donas</h5>
+                                    <!-- Product price-->
+                                    <span class="precio-producto">5000</span> CLP - <span class="precio-producto">2000</span> CLP
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="text-center">
+                                <button class="btn btn-outline-dark mt-auto" data-id="3" onclick="añadirAlCarrito(3, 'Donas', 2000, '{% static ',img/donas.jpg,' %}')" >Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/chaparrita.jpg' %}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">Chaparrita</h5>
+                                    <!-- Product reviews-->
+                                    <div class="d-flex justify-content-center small text-warning mb-2">
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                    </div>
+                                    <!-- Product price-->
+                                    <span class="precio-producto">1300</span> CLP 
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="text-center">
+                                <button class="btn btn-outline-dark mt-auto" data-id="4" onclick="añadirAlCarrito(4, 'Caparrita', 1300, '{% static ',img/chaparrita.jpg,' %}')" >Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Sale badge-->
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/sopapilla.jpeg' %}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">Sopapilla</h5>
+                                    <!-- Product price-->
+                                    <span class="precio-producto">1000</span> CLP 
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="text-center">
+                                <button class="btn btn-outline-dark mt-auto" data-id="5" onclick="añadirAlCarrito(5, 'Sopapilla', 250, '{% static ',img/sopapilla.jpeg,' %}')" >Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/capuchino.jpeg' %}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">Capuchino </h5>
+                                    <!-- Product price-->   
+                                    <span class="precio-producto">1500</span> CLP 
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="text-center">
+                                <button class="btn btn-outline-dark mt-auto" data-id="6" onclick="añadirAlCarrito(6, 'Capuchino', 15000, '{% static ',img/capuchino.jpeg,' %}')" >Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Sale badge-->
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/completo.jpeg' %}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">Completo</h5>
+                                    <!-- Product reviews-->
+                                    <div class="d-flex justify-content-center small text-warning mb-2">
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                    </div>
+                                    <!-- Product price-->
+                                    <span class="precio-producto">2500</span> CLP 
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="text-center">
+                                <button class="btn btn-outline-dark mt-auto" data-id="7" onclick="añadirAlCarrito(7, 'Completo', 1000, '{% static ',img/completo.jpeg,' %}')" >Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/pastel.jpg' %}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">Pastel</h5>
+                                    <!-- Product reviews-->
+                                    <div class="d-flex justify-content-center small text-warning mb-2">
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                    </div>
+                                    <!-- Product price-->
+                                    <span class="precio-producto">8000</span> CLP 
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="text-center">
+                                <button class="btn btn-outline-dark mt-auto" data-id="8" onclick="añadirAlCarrito(8, 'Pastel', 8000, '{% static ',img/pastel.jpg,' %}')" >Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+        </section>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Duoc 2024 &copy; Tu cafeteria favorita En Duoc Us</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script>
+            // Función para obtener el valor del dólar y convertir los precios
+            function obtenerValorDolarYConvertir() {
+                // Hacer una solicitud a la API para obtener el valor del dólar
+                fetch('https://mindicador.cl/api/dolar')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Obtener el valor del dólar desde la respuesta de la API
+                        const valorDolar = data.serie[0].valor;
+        
+                        // Seleccionar todos los elementos con la clase 'precio-producto'
+                        const precios = document.querySelectorAll('.precio-producto');
+        
+                        // Iterar sobre cada precio y convertirlo a dólares
+                        precios.forEach(precio => {
+                            // Obtener el valor en pesos del texto del elemento
+                            const valorPesos = parseFloat(precio.innerText);
+                            // Calcular el valor en dólares
+                            const valorDolares = valorPesos / valorDolar;
+                            // Actualizar el texto del precio con el valor en dólares
+                            precio.innerText = `USD ${valorDolares.toFixed(2)}`;
+                        });
+                    })
+                    .catch(error => console.error('Error al conectar con la API:', error));
+            }
+        
+            // Llamar a la función para obtener el valor del dólar cuando se carga la página
+            obtenerValorDolarYConvertir();
+        
+            // Función para añadir un producto al carrito
+            function añadirAlCarrito(idProducto, nombreProducto, precioProducto, imagenProducto) {
+                // Obtener el carrito del almacenamiento local o crear uno nuevo si no existe
+                let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+                // Buscar si el producto ya está en el carrito
+                let productoExistente = carrito.find(p => p.id === idProducto);
+                // Si el producto ya está en el carrito, aumentar su cantidad
+                if (productoExistente) {
+                    productoExistente.cantidad++;
+                } else {
+                  
+                    let producto = {
+                        id: idProducto,
+                        nombre: nombreProducto,
+                        precio: precioProducto,
+                        imagen: imagenProducto
+                    };
+                    producto.cantidad = 1;
+                    carrito.push(producto);
+                }
+               
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+            }
+        </script>
+        
+        
+    </body>
+</html>

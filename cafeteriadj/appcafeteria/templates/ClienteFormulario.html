@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reg.css">
+    <link rel="stylesheet" href="css/formualrio.css">
+    <title>Document</title>
+</head>
+<body>
+    <section class="sec">
+     <form action="" class="form-register">
+         <h1>Formulario comida</h1>
+         <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingresar nombre">
+         <input class="controls error" type="password" name="contraseña" id="contraseña" placeholder="Ingrese su contraseña">
+         <input class="controls" type="email" name="correo" id="correo" placeholder="Ingresar correo">
+         <label for="comida">Selecciona tu comida favorita:</label>
+            <select id="comida" name="comida">
+                <option value="pizza">Completo</option>
+                <option value="hamburguesa">Te</option>
+                <option value="sushi">Sushi</option>
+                <!-- Agrega más opciones aquí -->
+            </select>
+         <p><a href="#">Terminos y condiciones</a></p>
+                    <div class="alerta-error">Todos los campos son obligatorios</div>
+                    <div class="alerta-exito">Compra  exitoso</div>
+                
+     </form>
+     <a href="paypal.html"><button>Comprar</button></a>
+   </section>
+
+</body>
+<script src="js/reg.js"></script>
+</html>
