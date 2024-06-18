@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Formulario de Inicio de Sesión</title>
-<link rel="stylesheet" type="text/css" href="{% static 'formulario.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
@@ -32,7 +32,81 @@
 </form>
 <a href="{% url 'registro' %}"><button>Registrarse</button></a>
 
-<script src="js/scripts.js"></script>
+<script>
+    // Función para validar el nombre
+    function validarNombre(nombre) {
+        if (nombre === "") {
+            return "Por favor, ingrese su nombre.";
+        }
+        return "";
+    }
+
+    // Función para validar el correo electrónico
+    function validarCorreo(correo) {
+        if (correo === "") {
+            return "Por favor, ingrese su correo electrónico.";
+        }
+        // Expresión regular para validar el formato del correo electrónico
+        var correoRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!correoRegex.test(correo)) {
+            return "Por favor, ingrese un correo electrónico válido.";
+        }
+        return "";
+    }
+
+    // Función para validar la contraseña
+    function validarContrasena(contrasena) {
+        if (contrasena === "") {
+            return "Por favor, ingrese su contraseña.";
+        }
+        // Validación de longitud mínima
+        if (contrasena.length < 6) {
+            return "La contraseña debe tener al menos 6 caracteres.";
+        }
+        return "";
+    }
+
+    // Función principal para validar el formulario
+    function validateForm() {
+        var nombre = document.getElementById("nombre").value;
+        var correo = document.getElementById("correo").value;
+        var contrasena = document.getElementById("contrasena").value;
+
+        var nombreError = document.getElementById("nombreError");
+        var correoError = document.getElementById("correoError");
+        var contrasenaError = document.getElementById("contrasenaError");
+
+        // Resetear errores
+        nombreError.textContent = "";
+        correoError.textContent = "";
+        contrasenaError.textContent = "";
+
+        // Validar cada campo y mostrar errores si es necesario
+        var nombreMensaje = validarNombre(nombre);
+        if (nombreMensaje) {
+            nombreError.textContent = nombreMensaje;
+        }
+
+        var correoMensaje = validarCorreo(correo);
+        if (correoMensaje) {
+            correoError.textContent = correoMensaje;
+        }
+
+        var contrasenaMensaje = validarContrasena(contrasena);
+        if (contrasenaMensaje) {
+            contrasenaError.textContent = contrasenaMensaje;
+        }
+
+        // Evitar el envío del formulario si hay errores
+        if (nombreMensaje || correoMensaje || contrasenaMensaje) {
+            return false;
+        }
+
+        // Redireccionar al usuario a index.html si todo está correcto
+        window.location.href = "{% url 'index' %}";
+        return true;
+    }
+</script>
 
 </body>
 </html>
