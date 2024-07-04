@@ -1,5 +1,4 @@
 /* styles.css */
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
@@ -24,18 +23,20 @@ label {
     margin-bottom: 10px;
 }
 
-input,
+input[type="text"],
+input[type="email"],
+input[type="password"],
 select,
 textarea {
     width: 100%;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* Reducido de 20px a 10px para ajustar */
     border: 1px solid #ccc;
     border-radius: 3px;
-    box-shadow:  7px 13px 37px #0056b3;
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total del input */
 }
 
-button { 
+button {
     background-color: #007bff;
     color: #fff;
     border: none;

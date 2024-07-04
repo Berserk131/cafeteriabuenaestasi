@@ -1,29 +1,49 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'reg.css' %}">
     <link rel="stylesheet" href="{% static 'formulario.css' %}">
-    <title>Document</title>
+    <title>Registro</title>
 </head>
 <body>
-    <section class="sec">
-     <form action="" class="form-register">
-         <h1>REGISTRANDO</h1>
-         <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingresar nombre">
-         <input class="controls error" type="password" name="contraseña" id="contraseña" placeholder="Ingrese su contraseña">
-         <input class="controls" type="email" name="correo" id="correo" placeholder="Ingresar correo">
-         <p><a href="#">Terminos y condiciones</a></p>
-         <input type="submit" class="boton" value="Ingresar">
-                    <div class="alerta-error">Todos los campos son obligatorios</div>
-                    <div class="alerta-exito">Registro exitoso</div>
-                
-     </form>
-     <a href="Login.html"><button>Volver</button></a>
-   </section>
+    <div class="container">
+        <h1>REGISTRANDO</h1>
+        <form method="post" class="form-register">
+            {% csrf_token %}
+            
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required minlength="5" maxlength="150" pattern="[A-Za-z0-9@/./+/-/_]+" title="Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.">
 
+            <label for="nombres">Nombres:</label>
+            <input type="text" id="nombres" name="nombres" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password1">Password:</label>
+            <input type="password" id="password1" name="password1" required minlength="8" 
+                   title="Your password can’t be too similar to your other personal information. Your password must contain at least 8 characters. Your password can’t be a commonly used password. Your password can’t be entirely numeric.">
+
+            <label for="password2">Password confirmation:</label>
+            <input type="password" id="password2" name="password2" required title="Enter the same password as before, for verification.">
+
+            <p><a href="#">Términos y condiciones</a></p>
+
+            <button type="submit">Registrar</button>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="{% if message.tags %}alerta-{{ message.tags }}{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </form>
+        <a href="{% url 'login' %}"><button>Volver</button></a>
+    </div>
 </body>
-<script src="js/reg.js"></script>
+<script src="{% static 'js/reg.js' %}"></script>
 </html>
