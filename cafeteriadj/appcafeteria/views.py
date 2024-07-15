@@ -1,10 +1,11 @@
-
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm
+from .models import Producto  # Asegúrate de importar el modelo
 
 def index(request):
-    return render(request, 'index.html')
+    productos = Producto.objects.all()  # Obtiene todos los productos
+    return render(request, 'index.html', {'productos': productos})  # Pasa los productos al contexto
 
 def carrito(request):
     return render(request, 'carrito.html')
